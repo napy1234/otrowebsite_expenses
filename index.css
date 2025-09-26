@@ -1,0 +1,244 @@
+/* Reset and base styles */
+:root {
+  --bg-color: #121212;
+  --surface-color: #1e1e1e;
+  --primary-color: #bb86fc;
+  --primary-variant-color: #3700b3;
+  --secondary-color: #03dac6;
+  --on-bg-color: #ffffff;
+  --on-surface-color: #e0e0e0;
+  --error-color: #cf6679;
+  --income-color: #4caf50;
+  --expense-color: #f44336;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--on-bg-color);
+  line-height: 1.6;
+}
+
+#root {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* General components */
+h1, h2, h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: var(--primary-variant-color);
+  color: var(--on-bg-color);
+}
+
+button.secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+button.secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+}
+
+button.danger {
+    background-color: transparent;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+}
+button.danger:hover {
+    background-color: var(--error-color);
+    color: var(--bg-color);
+}
+
+
+input, select {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--surface-color);
+  border: 1px solid #333;
+  color: var(--on-surface-color);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* App container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--surface-color);
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Summary Section */
+.summary {
+  background-color: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.summary-item h3 {
+  font-size: 1rem;
+  color: var(--on-surface-color);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.summary-item p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.income-amount { color: var(--income-color); }
+.expense-amount { color: var(--expense-color); }
+.budget-amount { color: var(--secondary-color); }
+.remaining-amount { color: var(--primary-color); }
+
+/* Form Section */
+.form-section {
+  background-color: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-grid .description-field,
+.form-grid .category-field {
+    grid-column: 1 / -1;
+}
+
+/* Transaction List */
+.transaction-list h2 {
+    margin-top: 1rem;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  border-left: 5px solid;
+}
+
+.transaction-item.income { border-left-color: var(--income-color); }
+.transaction-item.fixed-expense { border-left-color: var(--expense-color); }
+.transaction-item.variable-expense { border-left-color: #ff9800; /* Orange for variable */ }
+
+.transaction-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.transaction-description {
+    font-weight: bold;
+}
+
+.transaction-category {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.transaction-amount {
+    font-weight: bold;
+}
+
+/* Modal Manager (for Categories, Users, etc.) */
+.modal-manager {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.manager-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.manager-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #333;
+}
+
+.add-item-form {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
